@@ -2,6 +2,7 @@ import './style.css';
 import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
+import { DRACOLoader } from 'three/examples/jsm/loaders/DRACOLoader';
 import * as dat from 'lil-gui';
 
 /**
@@ -17,9 +18,14 @@ const canvas = document.querySelector('canvas.webgl');
 const scene = new THREE.Scene();
 
 // Models
+const dracoLoader = new DRACOLoader();
+dracoLoader.setDecoderPath('/draco/');
+
 const gltfLoader = new GLTFLoader();
+gltfLoader.setDRACOLoader(dracoLoader);
+
 gltfLoader.load(
-  '/models/FlightHelmet/glTF/FlightHelmet.gltf',
+  '/models/Duck/glTF-Draco/Duck.gltf',
   (gltf) => {
     // Does not include all the elements
     // gltf.scene.children.forEach((child) => {
